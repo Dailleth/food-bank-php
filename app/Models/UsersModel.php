@@ -35,7 +35,6 @@ class UsersModel {
 			$users->getUsersLastname(),
 			$users->getUsersAddress(),
 			$users->getUsersEmail(),
-			$users->getUsersPassword(),
 			$users->getUsersDocument(),
 			$users->getUsersDocumentTypes(),
 			$users->getUsersPhone(),
