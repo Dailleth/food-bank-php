@@ -15,12 +15,14 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', fn() => info('[index]'));
 
 Route::prefix('api', function() {
-    Route::middleware(['jwt-authorize', 'admin-access'], function() {
-        Route::prefix("users", function() {
-            Route::post("create", [UsersController::class, "createUsers"]);
-            Route::get("read", [UsersController::class, "readUsers"]);
-            Route::put("update", [UsersController::class, "updateUsers"]);
-            Route::delete("delete", [UsersController::class, "deleteUsers"]);
+    Route::middleware(['jwt-authorize'], function() {
+        Route::middleware(['admin-access'], function() {
+            Route::prefix("users", function() {
+                Route::post("create", [UsersController::class, "createUsers"]);
+                Route::get("read", [UsersController::class, "readUsers"]);
+                Route::put("update", [UsersController::class, "updateUsers"]);
+                Route::delete("delete", [UsersController::class, "deleteUsers"]);
+            });
         });
     });
 
