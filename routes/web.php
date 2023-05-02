@@ -3,6 +3,7 @@
 use LionRoute\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProfileController;
 
 /**
  * ------------------------------------------------------------------------------
@@ -23,6 +24,10 @@ Route::prefix('api', function() {
                 Route::put("update", [UsersController::class, "updateUsers"]);
                 Route::delete("delete", [UsersController::class, "deleteUsers"]);
             });
+        });
+
+        Route::prefix('profile', function() {
+            Route::get('read', [ProfileController::class, 'readProfile']);
         });
     });
 
