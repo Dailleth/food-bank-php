@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UsersModel;
 use Database\Class\FoodBank\Users;
+use LionSecurity\RSA;
 
 class UsersController {
 
@@ -14,8 +15,13 @@ class UsersController {
 	}
 
 	public function createUsers() {
+        $rsa_encode = RSA::encode([
+            'users_password' => request->users_password
+        ]);
+
 		$response_create = $this->usersModel->createUsersDB(
 			Users::formFields()
+                ->setUsersPassword($rsa_encode->users_password)
 		);
 
 		if ($response_create->status === "database-error") {

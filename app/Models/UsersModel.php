@@ -26,7 +26,7 @@ class UsersModel {
 	}
 
 	public function readUsersDB() {
-		return DB::table("users")->select()->getAll();
+		return DB::view("read_users")->select()->getAll();
 	}
 
 	public function updateUsersDB(Users $users) {

@@ -2,6 +2,7 @@
 
 use LionRoute\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Auth\LoginController;
 
 /**
  * ------------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::prefix('api', function() {
         });
     // });
 
-    // Route::prefix('auth', function() {
-        // Route::post('login', []);
-    // });
+       Route::prefix('auth', function() {
+         Route::post('login', [LoginController::class, "auth"]);
+       });
 });
