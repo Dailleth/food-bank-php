@@ -13,25 +13,25 @@ use App\Http\Controllers\ProfileController;
  * ------------------------------------------------------------------------------
  **/
 
-Route::get('/', fn() => info('[index]'));
-
 Route::prefix('api', function() {
-    Route::middleware(['jwt-authorize'], function() {
-        Route::middleware(['admin-access'], function() {
-            Route::prefix("users", function() {
-                Route::post("create", [UsersController::class, "createUsers"]);
-                Route::get("read", [UsersController::class, "readUsers"]);
-                Route::put("update", [UsersController::class, "updateUsers"]);
-                Route::delete("delete", [UsersController::class, "deleteUsers"]);
-            });
-        });
+    Route::prefix('auth', function() {
+        Route::post('login', [LoginController::class, "auth"]);
+    });
 
+    Route::middleware(['jwt-authorize'], function() {
         Route::prefix('profile', function() {
             Route::get('read', [ProfileController::class, 'readProfile']);
         });
-    });
 
-    Route::prefix('auth', function() {
-        Route::post('login', [LoginController::class, "auth"]);
+        Route::middleware(['admin-access'], function() {
+            Route::prefix('admin', function() {
+                Route::prefix("users", function() {
+                    Route::post("create", [UsersController::class, "createUsers"]);
+                    Route::get("read", [UsersController::class, "readUsers"]);
+                    Route::put("update", [UsersController::class, "updateUsers"]);
+                    Route::delete("delete", [UsersController::class, "deleteUsers"]);
+                });
+            });
+        });
     });
 });
