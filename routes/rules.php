@@ -22,6 +22,11 @@ return [
         \App\Rules\Users\UsersDocumentTypesRule::class,
         \App\Rules\Users\UsersPhoneRule::class,
         \App\Rules\Users\IdrolesRule::class
+    ],
+
+    '/api/auth/login' => [
+        \App\Rules\Login\LoginUsersEmail::class,
+        \App\Rules\Login\LoginUsersPassword::class
     ]
 
 ];
