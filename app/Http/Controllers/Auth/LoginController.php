@@ -7,6 +7,7 @@ use App\Models\Auth\LoginModel;
 use Database\Class\FoodBank\Users;
 use LionSecurity\JWT;
 use LionSecurity\RSA;
+use LionSQL\Functions;
 
 class LoginController {
 

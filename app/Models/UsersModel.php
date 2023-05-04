@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Database\Class\FoodBank\Users;
 use LionSQL\Drivers\MySQL as DB;
+use PhpParser\Builder\Function_;
 
 class UsersModel {
 
@@ -49,5 +50,6 @@ class UsersModel {
 		])->execute();
 
 	}
+
 
 }
