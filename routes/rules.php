@@ -1,7 +1,7 @@
 <?php
 
 return [
-    '/api/users/create' => [
+    '/api/admin/users/create' => [
         \App\Rules\Users\UsersNameRule::class,
         \App\Rules\Users\UsersLastnameRule::class,
         \App\Rules\Users\UsersAdressRule::class,
@@ -12,8 +12,7 @@ return [
         \App\Rules\Users\UsersPhoneRule::class,
         \App\Rules\Users\IdrolesRule::class
     ],
-
-    '/api/users/update' => [
+    '/api/admin/users/update' => [
         \App\Rules\Users\UsersNameRule::class,
         \App\Rules\Users\UsersLastnameRule::class,
         \App\Rules\Users\UsersAdressRule::class,
@@ -23,12 +22,11 @@ return [
         \App\Rules\Users\UsersPhoneRule::class,
         \App\Rules\Users\IdrolesRule::class
     ],
-
     '/api/auth/login' => [
-        \App\Rules\Login\LoginUsersEmail::class,
-        \App\Rules\Login\LoginUsersPassword::class
+        \App\Rules\Users\UsersEmailRule::class,
+        \App\Rules\Users\UsersPasswordRule::class,
     ],
-    '/api/profile/update' =>[
+    '/api/profileupdate' =>[
         \App\Rules\Users\UsersPasswordRule::class
     ]
 ];

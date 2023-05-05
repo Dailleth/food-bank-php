@@ -13,26 +13,25 @@ class ProfileController {
     private object $jwt;
 
     public function __construct() {
-      $this->profileModel = new ProfileModel();
-      $this->jwt = JWT::decode(JWT::get());
-  }
-
-
-  public function readProfile() {
-    return $this->profileModel->readProfileDB(
-        (new ReadUsers())->setIdusers($this->jwt->data->idusers)
-    );
+        $this->profileModel = new ProfileModel();
+        $this->jwt = JWT::decode(JWT::get());
     }
 
-  public function updatePassword() {
-    $update_password = $this -> profileModel->updatePasswordDB(
-        Users::formFields()
-    );
-    if ($update_password->status === "database-error") {
-        return error("Ocurrio un error al actualizar su contraseña");
+    public function readProfile() {
+        return $this->profileModel->readProfileDB(
+            (new ReadUsers())->setIdusers($this->jwt->data->idusers)
+        );
     }
 
-    return success("El usuario se actualizo correctamente");
-}
+    public function updatePassword() {
+        $update_password = $this -> profileModel->updatePasswordDB(
+            Users::formFields()
+        );
+        if ($update_password->status === "database-error") {
+            return error("Ocurrio un error al actualizar su contraseña");
+        }
+
+        return success("El usuario se actualizo correctamente");
+    }
 
 }

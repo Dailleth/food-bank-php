@@ -22,18 +22,18 @@ class LoginController {
         $cont = $this->loginModel->authDB($users);
 
         if ($cont->cont === 0) {
-            return error("El email/password es incorrecto");
+            return error("El email/password es incorrecto [1]");
         }
 
         $session = $this->loginModel->sessionDB($users);
         $decode_rsa = RSA::decode(['users_password' => $session->users_password]);
 
         if ($decode_rsa->users_password != request->users_password) {
-            return error("El email/password es incorrecto");
+            return error("El email/password es incorrecto [2]");
         }
 
         $user_name = $session->users_name . " " . $session->users_lastname;
-        return success("Bienvenido: {$user_name}", [
+        return success("Bienvenid@: {$user_name}", [
             'jwt' => JWT::encode([
                 'session' => true,
                 'idusers' => $session->idusers,

@@ -16,12 +16,12 @@ use App\Http\Controllers\ProfileController;
 Route::prefix('api', function() {
     Route::prefix('auth', function() {
         Route::post('login', [LoginController::class, "auth"]);
-        Route::put("update", [LoginController::class, "updatePassword"]);
     });
 
     Route::middleware(['jwt-authorize'], function() {
         Route::prefix('profile', function() {
             Route::get('read', [ProfileController::class, 'readProfile']);
+            Route::put("update", [ProfileController::class, "updatePassword"]);
         });
 
         Route::middleware(['admin-access'], function() {
