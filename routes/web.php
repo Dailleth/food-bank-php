@@ -16,7 +16,7 @@ use App\Http\Controllers\ProfileController;
 Route::prefix('api', function() {
     Route::prefix('auth', function() {
         Route::post('login', [LoginController::class, "auth"]);
-        Route::put("update", [LoginController::class, ""]);
+        Route::put("update", [LoginController::class, "updatePassword"]);
     });
 
     Route::middleware(['jwt-authorize'], function() {

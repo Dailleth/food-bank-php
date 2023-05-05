@@ -27,6 +27,8 @@ return [
     '/api/auth/login' => [
         \App\Rules\Login\LoginUsersEmail::class,
         \App\Rules\Login\LoginUsersPassword::class
+    ],
+    '/api/profile/update' =>[
+        \App\Rules\Users\UsersPasswordRule::class
     ]
-
 ];
